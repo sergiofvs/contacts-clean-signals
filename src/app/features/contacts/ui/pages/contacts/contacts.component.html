@@ -1,0 +1,30 @@
+<div>
+  <fieldset>
+    <legend>Filtrar</legend>
+  </fieldset>
+
+  @if (viewModel(); as vm) {
+    @if (vm.error; as error) {
+      <div class="error">
+        {{ error }}
+      </div>
+    }
+
+    @if (vm.loading) {
+      <div class="loading">
+        Carregando contatos...
+      </div>
+    } @else if (vm.contacts) {
+      <ul>
+        @for (contact of vm.contacts.items; track contact.id) {
+          <li>
+            <img [src]="contact.fotoURL" [alt]="contact.nome" width="64" height="64" />
+            {{ contact.nome }}
+          </li>
+        }
+      </ul>
+    } @else {
+      <div>Nenhum contato encontrado.</div>
+    }
+  }
+</div>
